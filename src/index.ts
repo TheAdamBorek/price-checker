@@ -106,9 +106,8 @@ async function checkItems(chatId: string) {
 }
 
 cron.schedule(
-  "0 0 8 * * *",
+  "0 0 9 * * *",
   () => {
-    console.log("Running daily check at 8:00 AM");
     checkItems(chatId);
   },
   {
