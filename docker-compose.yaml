@@ -5,4 +5,6 @@ services:
     container_name: price-checker
     env_file:
       - .env
+    volumes:
+      - ${PRICE_CHECKER__DB_DIR}:${PRICE_CHECKER__DB_DIR}
     restart: unless-stopped
