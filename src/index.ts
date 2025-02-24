@@ -22,7 +22,7 @@ const bot = new TelegramBot(botToken, { polling: false });
 const checkers: { [url: string]: WebsiteChecker } = {
   "https://sklep.portalgames.pl/root-maruderzy": new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-podziemia": new PortalgamesChecker(),
-  "https://sklep.portalgames.pl/root-plemiona-rzecznez":
+  "https://sklep.portalgames.pl/root-plemiona-rzeczne":
     new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-punkty-terenu": new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-tryby-lesnogrodu":
