@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  price-checker:
+    build: .
+    container_name: price-checker
+    env_file:
+      - .env
+    restart: unless-stopped
