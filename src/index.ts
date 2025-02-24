@@ -7,21 +7,46 @@ import { PortalgamesChecker } from "./website-checkers/portalgames-checker";
 import { ItemData } from "./data/item-data";
 import { readPreviousData, writeData } from "./data/filestore";
 
-dotenv.config();
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
 
 const botToken = process.env.TELEGRAM_BOT_TOKEN;
 const chatId = process.env.TELEGRAM_CHAT_ID;
 if (!botToken || !chatId) {
-  throw new Error(
-    "TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set in .env",
-  );
+  throw new Error("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set in ENV");
 }
 
 const bot = new TelegramBot(botToken, { polling: false });
 
 const checkers: { [url: string]: WebsiteChecker } = {
-  "https://sklep.portalgames.pl/root": new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-maruderzy": new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-podziemia": new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-plemiona-rzecznez":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-punkty-terenu": new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-tryby-lesnogrodu":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-paczka-wloczegow":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-playmata-zimowa": new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-zaciezni-podziemia":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-zaciezni-maruderow":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/pl/p/ROOT-Zywiczne-znaczniki-polan/2082":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-zaciezni-plemion-rzecznych":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-talia-banitow-i-partyzantow":
+    new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/root-playmata-gory-i-jeziora":
+    new PortalgamesChecker(),
 };
+
+function getRandomFloat(to: number): number {
+  return Math.random() * to + 1;
+}
 
 async function checkItems(chatId: string) {
   const previousData = readPreviousData();
@@ -72,7 +97,9 @@ async function checkItems(chatId: string) {
       console.error(`Error checking ${url}:`, error);
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // 1-second delay
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.round(1000 * getRandomFloat(5))),
+    );
   }
 
   writeData(newData);
