@@ -2,7 +2,8 @@ import fs from "fs";
 
 import path from "path";
 import { ItemData } from "./item-data";
-const dataFile = path.join(__dirname, "data.json");
+import { env } from "../env";
+const dataFile = path.join(env.PRICE_CHECKER__DB_DIR, "data.json");
 
 function ensureDirectoriesExistSync(filePath: string) {
   const dir = path.dirname(filePath);

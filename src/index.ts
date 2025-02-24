@@ -7,7 +7,7 @@ import { ItemData } from "./data/item-data";
 import { readPreviousData, writeData } from "./data/filestore";
 import { env } from "./env";
 
-const bot = new TelegramBot(env.PRICE_CHECKER__TELEGRAM_CHAT_ID, {
+const bot = new TelegramBot(env.PRICE_CHECKER__TELEGRAM_BOT_TOKEN, {
   polling: false,
 });
 
