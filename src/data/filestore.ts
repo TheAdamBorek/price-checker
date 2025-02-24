@@ -13,6 +13,7 @@ function ensureDirectoriesExistSync(filePath: string) {
 export function readPreviousData(): { [url: string]: ItemData } {
   if (!fs.existsSync(dataFile)) {
     console.log(`No previous data found at ${dataFile}`);
+    return {};
   }
   const data = fs.readFileSync(dataFile, "utf-8");
   return JSON.parse(data);
