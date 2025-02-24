@@ -42,14 +42,12 @@ async function checkItems(chatId: string) {
 
       // Compare with previous state
       const prev = previousData[url];
+
       if (!prev) {
-        // New item
-        if (available) {
-          await bot.sendMessage(
-            chatId,
-            `New item available: ${url}, Price: ${price} zł`,
-          );
-        }
+        await bot.sendMessage(
+          chatId,
+          `Initial Check\nItem is ${available ? "available" : "unavailable"}: ${url}, Price: ${price} zł`,
+        );
       } else {
         if (prev.available && !available) {
           await bot.sendMessage(chatId, `Item no longer available: ${url}`);

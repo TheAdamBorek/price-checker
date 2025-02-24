@@ -1,11 +1,16 @@
-import { WebsiteChecker } from "~/website-checkers/website-checker.type";
-import cheerio from "cheerio";
+import { WebsiteChecker } from "./website-checker.type";
+import * as cheerio from "cheerio";
 
 export class PortalgamesChecker implements WebsiteChecker {
   isAvailable(html: string): boolean {
-    debugger;
     const $ = cheerio.load(html);
-    return $('button:contains("Do Koszyka")').length > 0;
+    const hasAddToCart =
+      $("button").filter((i, element) => {
+        const text = $(element).text().toLowerCase();
+        return text.includes("do koszyka");
+      }).length > 0;
+
+    return hasAddToCart;
   }
 
   getPrice(html: string): number | undefined {

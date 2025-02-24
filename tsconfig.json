@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2024",
+    "target": "esnext",
     "module": "commonjs",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "sourceMap": true
   },
   "include": ["src/**/*"]
 }
