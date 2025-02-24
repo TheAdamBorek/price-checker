@@ -4,6 +4,11 @@ import path from "path";
 import { ItemData } from "./item-data";
 const dataFile = path.join(__dirname, "data.json");
 
+function ensureDirectoriesExistSync(filePath: string) {
+  const dir = path.dirname(filePath);
+  fs.mkdirSync(dir, { recursive: true });
+}
+
 export function readPreviousData(): { [url: string]: ItemData } {
   if (fs.existsSync(dataFile)) {
     const data = fs.readFileSync(dataFile, "utf-8");
@@ -13,5 +18,6 @@ export function readPreviousData(): { [url: string]: ItemData } {
 }
 
 export function writeData(data: { [url: string]: ItemData }) {
+  ensureDirectoriesExistSync(dataFile);
   fs.writeFileSync(dataFile, JSON.stringify(data, null, 2));
 }

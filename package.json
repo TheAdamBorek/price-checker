@@ -17,7 +17,8 @@
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.7",
     "node-cron": "^3.0.3",
-    "node-telegram-bot-api": "^0.66.0"
+    "node-telegram-bot-api": "^0.66.0",
+    "zod": "^3.24.2"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",

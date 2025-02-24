@@ -1,23 +1,15 @@
 import axios from "axios";
 import cron from "node-cron";
 import TelegramBot from "node-telegram-bot-api";
-import dotenv from "dotenv";
 import { WebsiteChecker } from "./website-checkers/website-checker.type";
 import { PortalgamesChecker } from "./website-checkers/portalgames-checker";
 import { ItemData } from "./data/item-data";
 import { readPreviousData, writeData } from "./data/filestore";
+import { env } from "./env";
 
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
-}
-
-const botToken = process.env.TELEGRAM_BOT_TOKEN;
-const chatId = process.env.TELEGRAM_CHAT_ID;
-if (!botToken || !chatId) {
-  throw new Error("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set in ENV");
-}
-
-const bot = new TelegramBot(botToken, { polling: false });
+const bot = new TelegramBot(env.PRICE_CHECKER__TELEGRAM_CHAT_ID, {
+  polling: false,
+});
 
 const checkers: { [url: string]: WebsiteChecker } = {
   "https://sklep.portalgames.pl/root-maruderzy": new PortalgamesChecker(),
@@ -48,7 +40,8 @@ function getRandomFloat(to: number): number {
   return Math.random() * to + 1;
 }
 
-async function checkItems(chatId: string) {
+async function checkItems() {
+  const chatId = env.PRICE_CHECKER__TELEGRAM_CHAT_ID;
   const previousData = readPreviousData();
   const newData: { [url: string]: ItemData } = {};
 
@@ -108,7 +101,7 @@ async function checkItems(chatId: string) {
 cron.schedule(
   "0 0 9 * * *",
   () => {
-    checkItems(chatId);
+    checkItems();
   },
   {
     timezone: "Europe/Warsaw", // Adjust to your timezone
@@ -116,4 +109,4 @@ cron.schedule(
 );
 
 // Run once on startup for testing (optional)
-checkItems(chatId).then(() => console.log("Initial check complete"));
+checkItems().then(() => console.log("Initial check complete"));
