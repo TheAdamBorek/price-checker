@@ -14,8 +14,6 @@ const bot = new TelegramBot(env.PRICE_CHECKER__TELEGRAM_BOT_TOKEN, {
 const checkers: { [url: string]: WebsiteChecker } = {
   "https://sklep.portalgames.pl/root-maruderzy": new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-podziemia": new PortalgamesChecker(),
-  "https://sklep.portalgames.pl/root-plemiona-rzeczne":
-    new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-punkty-terenu": new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-tryby-lesnogrodu":
     new PortalgamesChecker(),
@@ -30,10 +28,9 @@ const checkers: { [url: string]: WebsiteChecker } = {
     new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-zaciezni-plemion-rzecznych":
     new PortalgamesChecker(),
-  "https://sklep.portalgames.pl/root-talia-banitow-i-partyzantow":
-    new PortalgamesChecker(),
   "https://sklep.portalgames.pl/root-playmata-gory-i-jeziora":
     new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/dune-wojna-o-arrakis": new PortalgamesChecker(),
 };
 
 function getRandomFloat(to: number): number {
