@@ -31,6 +31,7 @@ const checkers: { [url: string]: WebsiteChecker } = {
   "https://sklep.portalgames.pl/root-playmata-gory-i-jeziora":
     new PortalgamesChecker(),
   "https://sklep.portalgames.pl/dune-wojna-o-arrakis": new PortalgamesChecker(),
+  "https://sklep.portalgames.pl/ankh": new PortalgamesChecker(),
 };
 
 function getRandomFloat(to: number): number {
