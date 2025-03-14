@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "pnpm run build && node dist/index.js",
-    "docker": "docker-"
+    "docker": "sudo docker-compose up --build -d"
   },
   "keywords": [],
   "author": "",
