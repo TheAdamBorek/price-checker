@@ -34,12 +34,18 @@ const checkers: { [url: string]: WebsiteChecker } = {
   "https://sklep.portalgames.pl/dune-wojna-o-arrakis": new PortalgamesChecker(),
   "https://sklep.portalgames.pl/ankh": new PortalgamesChecker(),
   "https://planszeo.pl/gry-planszowe/root-podziemia": new PlanszeoChecker(),
-  "https://planszeo.pl/gry-planszowe/dune-war-for-arrakis": new PlanszeoChecker(),
-  "https://planszeo.pl/gry-planszowe/ankh-bogowie-egiptu": new PlanszeoChecker(),
-  "https://planszeo.pl/gry-planszowe/marvel-dice-throne-scarlet-witch-v-thor-v-loki-v-spider-man": new PlanszeoChecker(),
-  "https://planszeo.pl/gry-planszowe/marvel-dice-throne-kapitan-marvel-v-czarna-pantera-v-doktor-strange-v-czarna-wdowa": new PlanszeoChecker(),
-  "https://planszeo.pl/gry-planszowe/unmatched-the-witcher-steel-and-silver": new PlanszeoChecker(),
-  "https://planszeo.pl/gry-planszowe/unmatched-the-witcher-realms-fall": new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/dune-war-for-arrakis":
+    new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/ankh-bogowie-egiptu":
+    new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/marvel-dice-throne-scarlet-witch-v-thor-v-loki-v-spider-man":
+    new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/marvel-dice-throne-kapitan-marvel-v-czarna-pantera-v-doktor-strange-v-czarna-wdowa":
+    new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/unmatched-the-witcher-steel-and-silver":
+    new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/unmatched-the-witcher-realms-fall":
+    new PlanszeoChecker(),
 };
 
 function getRandomFloat(to: number): number {
@@ -54,7 +60,7 @@ async function checkItems() {
   // Create an array of URLs and shuffle it
   const urls = Object.keys(checkers);
   const shuffledUrls = [...urls].sort(() => Math.random() - 0.5);
-  
+
   for (const url of shuffledUrls) {
     try {
       const response = await axios.get(url, {
@@ -130,7 +136,10 @@ async function test() {
       headers: { "User-Agent": "Mozilla/5.0" }, // Basic user-agent to avoid blocks
     },
   );
-  console.log(checker.isAvailable(response.data), checker.getPrice(response.data));
+  console.log(
+    checker.isAvailable(response.data),
+    checker.getPrice(response.data),
+  );
 
   response = await axios.get(
     "https://planszeo.pl/gry-planszowe/root-podziemia",
