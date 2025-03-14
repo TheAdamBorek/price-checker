@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "pnpm run build && node dist/index.js",
-    "build-docker-image": "docker build -t price-checker . && docker save -o price-checker.tar price-checker:latest"
+    "docker": "docker-"
   },
   "keywords": [],
   "author": "",
