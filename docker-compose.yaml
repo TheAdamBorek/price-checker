@@ -1,6 +1,6 @@
 services:
   price-checker:
-    build: .
+    image: price-checker:latest
     container_name: price-checker
     env_file:
       - .env
