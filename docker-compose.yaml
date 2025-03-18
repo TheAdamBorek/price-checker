@@ -1,5 +1,5 @@
 services:
-  price-checker:
+  app:
     image: price-checker:latest
     container_name: price-checker
     env_file:
