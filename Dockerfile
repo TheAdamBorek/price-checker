@@ -12,9 +12,8 @@ COPY package.json pnpm-lock.yaml* ./
 
 # Install dependencies
 RUN pnpm install --frozen-lockfile
-
-# Copy the rest of your project files
-COPY . .
+COPY tsconfig.json ./
+COPY src ./src/
 
 # Build TypeScript to JavaScript
 RUN pnpm run build
