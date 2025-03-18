@@ -46,6 +46,8 @@ const checkers: { [url: string]: WebsiteChecker } = {
     new PlanszeoChecker(),
   "https://planszeo.pl/gry-planszowe/unmatched-the-witcher-realms-fall":
     new PlanszeoChecker(),
+  "https://planszeo.pl/gry-planszowe/wojna-o-pierscien-2-edycja":
+    new PlanszeoChecker(),
 };
 
 function getRandomFloat(to: number): number {
