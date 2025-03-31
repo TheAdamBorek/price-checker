@@ -7,6 +7,7 @@ import { PlanszeoChecker } from "./website-checkers/planszeo-checker";
 import { ItemData } from "./data/item-data";
 import { readPreviousData, writeData } from "./data/filestore";
 import { env } from "./env";
+import { CeneoChecker } from "./website-checkers/ceneo-checker";
 
 const bot = new TelegramBot(env.PRICE_CHECKER__TELEGRAM_BOT_TOKEN, {
   polling: false,
@@ -50,6 +51,7 @@ const checkers: { [url: string]: WebsiteChecker } = {
     new PlanszeoChecker(),
   "https://planszeo.pl/gry-planszowe/the-white-castle-matcha":
     new PlanszeoChecker(),
+  "https://www.ceneo.pl/163701310": new CeneoChecker(),
 };
 
 function getRandomFloat(to: number): number {
