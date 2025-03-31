@@ -132,31 +132,3 @@ cron.schedule(
 
 // Run once on startup for testing (optional)
 checkItems().then(() => console.log("Initial check complete"));
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-async function test() {
-  const checker = new PlanszeoChecker();
-  let response = await axios.get(
-    "https://planszeo.pl/gry-planszowe/dune-war-for-arrakis",
-    {
-      headers: { "User-Agent": "Mozilla/5.0" }, // Basic user-agent to avoid blocks
-    },
-  );
-  console.log(
-    checker.isAvailable(response.data),
-    checker.getPrice(response.data),
-  );
-
-  response = await axios.get(
-    "https://planszeo.pl/gry-planszowe/root-podziemia",
-    {
-      headers: { "User-Agent": "Mozilla/5.0" }, // Basic user-agent to avoid blocks
-    },
-  );
-  console.log(
-    checker.isAvailable(response.data),
-    checker.getPrice(response.data),
-  );
-}
-
-// test();
