@@ -63,3 +63,17 @@ export const checksRelations = relations(checks, ({ one }) => ({
 		references: [items.id],
 	}),
 }));
+
+export const sessions = createTable(
+	"session",
+	(d) => ({
+		id: d.integer().primaryKey().generatedByDefaultAsIdentity(),
+		token: d.text().notNull().unique(),
+		expiresAt: d.timestamp({ withTimezone: true }).notNull(),
+		createdAt: d
+			.timestamp({ withTimezone: true })
+			.$defaultFn(() => new Date())
+			.notNull(),
+	}),
+	(t) => [index("session_token_idx").on(t.token)],
+);
