@@ -1,5 +1,5 @@
+import crypto from "node:crypto";
 import bcrypt from "bcryptjs";
-import crypto from "crypto";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -44,7 +44,8 @@ export async function POST(request: Request) {
 		});
 
 		return NextResponse.json({ success: true });
-	} catch {
+	} catch (error) {
+		console.error(error);
 		return NextResponse.json(
 			{ error: "Internal server error" },
 			{ status: 500 },
