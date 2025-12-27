@@ -1,34 +1,44 @@
 {
   "name": "price-checker",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "pnpm run build && node dist/index.js",
-    "test": "pnpm run build && node dist/debug.js",
-    "docker": "sudo docker-compose up --build -d"
+    "build": "next build",
+    "check": "biome check .",
+    "check:unsafe": "biome check --write --unsafe .",
+    "check:write": "biome check --write .",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "dev": "next dev --turbo",
+    "preview": "next build && next start",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@9.15.4+sha512.b2dc20e2fc72b3e18848459b37359a32064663e5627a51e4c74b2c29dd8e8e0491483c3abb40789cfd578bf362fb6ba8261b05f0387d76792ed6e23ea3b1b6a0",
   "dependencies": {
-    "axios": "^1.7.9",
-    "cheerio": "^1.0.0",
-    "dotenv": "^16.4.7",
-    "node-cron": "^3.0.3",
-    "node-telegram-bot-api": "^0.66.0",
+    "@t3-oss/env-nextjs": "^0.12.0",
+    "drizzle-orm": "^0.41.0",
+    "next": "^15.2.3",
+    "postgres": "^3.4.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@types/node": "^22.13.5",
-    "@types/node-cron": "^3.0.11",
-    "@types/node-telegram-bot-api": "^0.64.7",
-    "eslint": "^9.21.0",
-    "globals": "^16.0.0",
-    "typescript": "^5.7.3",
-    "typescript-eslint": "^8.25.0"
-  }
+    "@biomejs/biome": "^2.2.5",
+    "@tailwindcss/postcss": "^4.0.15",
+    "@types/node": "^20.14.10",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "drizzle-kit": "^0.30.5",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.0.15",
+    "typescript": "^5.8.2"
+  },
+  "ct3aMetadata": {
+    "initVersion": "7.40.0"
+  },
+  "packageManager": "pnpm@9.15.4"
 }
